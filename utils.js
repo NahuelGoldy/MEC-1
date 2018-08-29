@@ -7,6 +7,6 @@ exports.readTextFile = (filepath) => {
 
 exports.writeTextFile = (data) => {
     const options = {encoding:'utf-8', flag:'w'};
-    fs.writeFileSync('sorted-result.txt', JSON.stringify(data), options)
+    fs.writeFileSync('sorted-result.txt', JSON.stringify(data), options);
     console.log('Results written to file');
 };

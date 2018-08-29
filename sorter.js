@@ -1,5 +1,5 @@
 exports.mergeSort = (array) => {
-    if(array.length == 1 ) return array;
+    if(array.length === 1) return array;
 
     const mid = array.length / 2;
     let left = array.slice(0, mid);

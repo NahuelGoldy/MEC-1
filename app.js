@@ -17,9 +17,9 @@ app.listen(3000, function () {
 
     const content = JSON.parse(utils.readTextFile(filepath));
 
-    console.time('Sorting');
+    console.time('Sorting execution time');
     const result = sorter.mergeSort(content);
-    console.timeEnd('Sorting');
+    console.timeEnd('Sorting execution time');
 
     utils.writeTextFile(result);
 

@@ -1,0 +1,14 @@
+{
+  "name": "mec-1",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "~4.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}

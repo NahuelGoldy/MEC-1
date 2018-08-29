@@ -1,14 +1,26 @@
 const express = require('express');
 const app = express();
 const sorter = require('./sorter.js');
-
-app.get('/', function (req, res) {
-    res.send('Sorter started');
-    console.log('Sorter started');
-    console.log('Sorted content: ' + JSON.stringify(sorter.sortFile('C:\\Users\\042\\Downloads\\dataset2.txt')));
-});
+const utils = require('./utils.js');
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-    console.log('Original file content: ' + sorter.readTextFile('C:\\Users\\042\\Downloads\\dataset2.txt'));
+    console.log('Sorter started!');
+
+    const filepath = 'C:\\Users\\042\\Downloads\\dataset.txt';
+/*
+    // Example using built-in sorting - used for benchmarking
+    const content = JSON.parse(utils.readTextFile(filepath));
+    console.time('Built-in Sorting');
+    const result = content.sort((a, b) => a - b);
+    console.timeEnd('Built-in Sorting');
+*/
+
+    const content = JSON.parse(utils.readTextFile(filepath));
+
+    console.time('Sorting');
+    const result = sorter.mergeSort(content);
+    console.timeEnd('Sorting');
+
+    utils.writeTextFile(result);
+
 });

@@ -1,17 +1,40 @@
-const fs = require('fs');
+exports.mergeSort = (array) => {
+    if(array.length == 1 ) return array;
 
-exports.readTextFile = (filepath) => {
-    const options = {encoding:'utf-8', flag:'r'};
-    return fs.readFileSync(filepath, options);
+    const mid = array.length / 2;
+    let left = array.slice(0, mid);
+    let right = array.slice(mid);
+
+    left = this.mergeSort(left);
+    right = this.mergeSort(right);
+
+    return merge(left, right);
 };
 
-exports.sortFileBuiltIn = (filepath) => {
-    const content = JSON.parse(this.readTextFile(filepath));
-    return content.sort((a, b) => a - b);
-};
+const merge = (left, right) => {
+    const result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
 
-exports.sortFile = (filepath) => {
-    const content = JSON.parse(this.readTextFile(filepath));
+    while(leftIndex < left.length && rightIndex < right.length) {
+        if(left[leftIndex] > right[rightIndex]) {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        } else {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        }
+    }
 
+    while(leftIndex < left.length) {
+        result.push(left[leftIndex]);
+        leftIndex++;
+    }
 
+    while(rightIndex < right.length) {
+        result.push(right[rightIndex]);
+        rightIndex++;
+    }
+
+    return result;
 };
